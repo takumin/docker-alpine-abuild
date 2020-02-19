@@ -1,0 +1,9 @@
+.git
+.gitignore
+aports
+packages
+distfiles
+LICENSE
+Makefile
+README.md
+docker-compose.yml

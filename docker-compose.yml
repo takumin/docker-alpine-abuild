@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  #
+  # builder
+  #
+  abuild:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+      args:
+        ALPINE_BRANCH: ${ALPINE_BRANCH:-latest}
+      cache_from:
+        - alpine:${ALPINE_BRANCH:-latest}
+    image: ${REPOSITORY:-takumi/alpine-abuild}:latest
+    hostname: abuild
+    container_name: abuild
+    volumes:
+      - ./aports:/builder/aports
+      - ./packages:/builder/packages
+      - ./distfiles:/var/cache/distfiles
